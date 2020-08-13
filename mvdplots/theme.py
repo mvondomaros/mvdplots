@@ -46,7 +46,6 @@ def set_theme():
             "savefig.bbox": "tight",
             "patch.linewidth": 0.3,
             "patch.facecolor": "4e79a7",
-            "scatter.edgecolors": "white",
         }
     )
 
