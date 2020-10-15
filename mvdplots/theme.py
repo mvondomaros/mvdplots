@@ -8,7 +8,7 @@ class State:
     __init__ = None
 
 
-ASPECT_RATIO = 16 / 10
+ASPECT_RATIO = 1 / 1
 FIGURE_WIDTHS = {"jpcb": {"single": 3.33, "double": 7}}
 
 
@@ -25,7 +25,7 @@ def set_journal(journal="jpcb"):
 
 def set_theme():
     if State.rc_params is None:
-        State.rc_params = mpl.rcParams
+        State.rc_params = mpl.rcParams.copy()
 
     mpl.rcParams.update(
         {
@@ -61,7 +61,7 @@ def set_theme():
             "legend.numpoints": 1,
             "legend.scatterpoints": 1,
             "lines.linewidth": 1.4,
-            "figure.dpi": 150,
+            "figure.dpi": 126,
             "figure.constrained_layout.use": True,
             "image.cmap": "cividis",
             "savefig.dpi": 300,
