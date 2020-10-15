@@ -8,18 +8,22 @@ class State:
     __init__ = None
 
 
-FIGSIZES = {"jpc": (3.25, 0.8 * 3.25)}
+ASPECT_RATIO = 16 / 10
+FIGURE_WIDTHS = {"jpcb": {"single": 3.33, "double": 7}}
 
 
-def set_gridsize(rows=1, cols=1):
-    if State.journal is None:
-        figsize = mpl.rcParams["figure.figsize"]
-    else:
-        figsize = FIGSIZES[State.journal]
-    mpl.rcParams["figure.figsize"] = (rows * figsize[0], cols * figsize[1])
+def figsize(width="single", height=1.0):
+    width = FIGURE_WIDTHS[State.journal][width]
+    height *= width / ASPECT_RATIO
+    return (width, height)
 
 
-def set_theme(journal="jpc"):
+def set_journal(journal="jpcb"):
+    State.journal = journal
+    mpl.rcParams["figure.figsize"] = figsize()
+
+
+def set_theme():
     if State.rc_params is None:
         State.rc_params = mpl.rcParams
 
@@ -58,7 +62,6 @@ def set_theme(journal="jpc"):
             "legend.scatterpoints": 1,
             "lines.linewidth": 1.4,
             "figure.dpi": 150,
-            "figure.figsize": FIGSIZES[journal],
             "figure.constrained_layout.use": True,
             "image.cmap": "cividis",
             "savefig.dpi": 300,
@@ -67,6 +70,8 @@ def set_theme(journal="jpc"):
             "patch.facecolor": "4e79a7",
         }
     )
+
+    set_journal()
 
 
 def unset_theme():
