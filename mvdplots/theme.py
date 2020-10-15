@@ -14,7 +14,7 @@ FIGURE_WIDTHS = {"jpcb": {"single": 3.33, "double": 7}}
 
 def figsize(width="single", height=1.0):
     width = FIGURE_WIDTHS[State.journal][width]
-    height *= width / ASPECT_RATIO
+    height *= FIGURE_WIDTHS[State.journal]["single"] / ASPECT_RATIO
     return (width, height)
 
 
