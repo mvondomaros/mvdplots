@@ -8,7 +8,7 @@ class State:
     __init__ = None
 
 
-ASPECT_RATIO = 4/3
+ASPECT_RATIO = 5/4
 FIGURE_WIDTHS = {"jpcb": {"single": 3.33, "double": 7}}
 
 
