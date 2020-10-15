@@ -1,9 +1,28 @@
 import matplotlib as mpl
 
-from .figsize import figsize
+
+class State:
+    journal = None
+    rc_params = None
+
+    __init__ = None
 
 
-def set_theme():
+FIGSIZES = {"jpc": (3.25, 0.8 * 3.25)}
+
+
+def set_gridsize(rows=1, cols=1):
+    if State.journal is None:
+        figsize = mpl.rcParams["figure.figsize"]
+    else:
+        figsize = FIGSIZES[State.journal]
+    mpl.rcParams["figure.figsize"] = (rows * figsize[0], cols * figsize[1])
+
+
+def set_theme(journal="jpc"):
+    if State.rc_params is None:
+        State.rc_params = mpl.rcParams
+
     mpl.rcParams.update(
         {
             "font.size": 8,
@@ -39,7 +58,7 @@ def set_theme():
             "legend.scatterpoints": 1,
             "lines.linewidth": 1.4,
             "figure.dpi": 150,
-            "figure.figsize": figsize(),
+            "figure.figsize": FIGSIZES[journal],
             "figure.constrained_layout.use": True,
             "image.cmap": "cividis",
             "savefig.dpi": 300,
@@ -49,3 +68,8 @@ def set_theme():
         }
     )
 
+
+def unset_theme():
+    if State.original_rc_params is not None:
+        mpl.rcParams = State.rc_params
+        State.rc_params = None

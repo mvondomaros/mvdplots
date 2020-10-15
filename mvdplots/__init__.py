@@ -1,9 +1,3 @@
-import numpy as np
-import matplotlib as mpl
-import matplotlib.pyplot as plt
+from .theme import set_theme, set_gridsize
 
-from .colors import coolwarm
-from .figsize import figsize
-from .theme import set_theme
-
-__all__ = ["coolwarm", "figsize", "set_theme"]
+__all__ = ["set_theme", "set_gridsize"]
